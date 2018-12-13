@@ -29,7 +29,7 @@ public class GameController {
     private static bool _isRageReadyToActivate = false;
     private static bool _isRageActivated = false;
 
-    private static double _currentMovementSpeed;
+    private static double _currentMovementSpeed = 1;
 
     private static double _lightAttackDamage = 10;
 
@@ -85,7 +85,7 @@ public class GameController {
         private set { _currentLevelMaxXP = value; }
     }
 
-    public static int CurrentXp {
+    public static int CurrentXP {
         get { return _currentXP; }
         private set {
             if (value >= CurrentLevelMaxXp) {
@@ -103,12 +103,12 @@ public class GameController {
 
     // for debugging
     public static void IncCurrentXPBy(int value) {
-        CurrentXp += value;
+        CurrentXP += value;
     }
 
     // this should be used whenever an enemy is killed
     public static void AddEnemyKillXP() {
-        CurrentXp += 50;
+        CurrentXP += 50;
     }
 
     public static double MaxHealthPoints {
@@ -138,6 +138,7 @@ public class GameController {
     }
 
     public static void LosePlayerHealthPointsBy(double value) {
+        CurrentHealthPoints -= value;
     }
 
     public static void RestorePlayerHealthPoints() {
@@ -237,17 +238,14 @@ public class GameController {
                 }
 
                 return LightAttackDamage;
-                break;
             case 1:
                 if (IsRageActivated) {
                     return 2 * HeavyAttackDamage;
                 }
 
                 return HeavyAttackDamage;
-                break;
             default:
                 return 0;
-                break;
         }
     }
     /*********************/
@@ -302,7 +300,7 @@ public class GameController {
         _isGamePaused = false;
     }
 
-    public static void GameOver() {
+    private static void GameOver() {
         _isGamePaused = true;
         _isGameOver = true;
         loadScene(GameOverSceneName, LoadSceneMode.Additive);
