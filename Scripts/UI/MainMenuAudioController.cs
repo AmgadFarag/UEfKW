@@ -5,13 +5,13 @@ namespace UI {
         private AudioSource mainMenuAudioSource;
 
         // Use this for initialization
-        void Start() {
+        private void Start() {
             mainMenuAudioSource = GetComponent<AudioSource>();
             mainMenuAudioSource.volume = GameController.MusicSoundLevel;
         }
 
         // Update is called once per frame
-        void Update() {
+        private void Update() {
             mainMenuAudioSource.volume = GameController.MusicSoundLevel;
         }
     }

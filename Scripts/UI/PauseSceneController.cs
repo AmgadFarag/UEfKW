@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI {
     public class PauseSceneController : MonoBehaviour {
         public void SkillUpgrade() {
-            StartCoroutine(GameController.unloadSceneAsync(GameController.SkillUpgradeSceneName));
+            StartCoroutine(GameController.loadSceneAsync(GameController.SkillUpgradeSceneName, LoadSceneMode.Additive));
+            StartCoroutine(GameController.unloadSceneAsync(GameController.PauseSceneName));
         }
 
         public void Resume() {
@@ -14,17 +16,18 @@ namespace UI {
         public void Restart() {
             // TODO, are there any actions that should be done before loading the main menu scene,
             // like saving any thing.
-            StartCoroutine(GameController.loadSceneAsync(GameController.GameSceneName));
+            StartCoroutine(GameController.loadSceneAsync(GameController.GameSceneName, LoadSceneMode.Single));
         }
 
         public void ToMainMenu() {
             // TODO, are there any actions that should be done before loading the main menu scene,
             // like saving any thing.
-            StartCoroutine(GameController.loadSceneAsync(GameController.MainMenuSceneName));
+            StartCoroutine(GameController.loadSceneAsync(GameController.MainMenuSceneName, LoadSceneMode.Single));
         }
 
         private void Start() {
-            //GameController.PauseGame();
+            // TODO, call it from here or what?
+            GameController.PauseGame();
         }
     }
 }

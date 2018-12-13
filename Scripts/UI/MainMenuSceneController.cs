@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI {
@@ -15,7 +16,7 @@ namespace UI {
 
         public void StartGame() {
             // Use a co-routine to load the Scene in the background
-            StartCoroutine(GameController.loadSceneAsync(GameController.GameSceneName));
+            StartCoroutine(GameController.loadSceneAsync(GameController.GameSceneName, LoadSceneMode.Single));
         }
 
         public void ShowOptionsWindow() {
